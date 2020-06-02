@@ -1,0 +1,33 @@
+---
+layout: main
+---
+{% for post in paginator.posts %}
+<article class="post">
+  {% if post.img %}
+    <a class="post-thumbnail" style="background-image: url({{"/assets/img/" | prepend: site.baseurl | append : post.img}})" href="{{post.url | prepend: site.baseurl}}"></a>
+  {% elsif post.tags contains "music" %}
+    <a class="post-thumbnail" style="background-image: url('/assets/img/people-music-preview.jpg')" href="{{post.url | prepend: site.baseurl}}"></a>
+  {% elsif post.tags contains "book" %}
+    <a class="post-thumbnail" style="background-image: url('/assets/img/blurred-book.jpg')" href="{{post.url | prepend: site.baseurl}}"></a>
+  {% elsif post.tags contains "movie" %}
+    <a class="post-thumbnail" style="background-image: url('/assets/img/movie-projector.png')" href="{{post.url | prepend: site.baseurl}}"></a>
+  {% else %}    
+    <a class="post-thumbnail" style="background-image: url('/assets/img/blog-default2.jpg')" href="{{post.url | prepend: site.baseurl}}"></a>
+  {% endif %}
+
+  <div class="post-content">
+    <h2 class="post-title"><a href="{{post.url | prepend: site.baseurl}}">{{post.title}}</a></h2>
+    
+    {% if post.summary %}
+    <p>{{ post.summary }}</p>
+    {% else %}
+    <p>{{ post.content | strip_html | truncatewords: 15 }}</p>
+    {% endif %}
+
+    <span class="post-date">{{post.date | date: '%Y, %b %d'}}&nbsp;&nbsp;&nbsp;—&nbsp;</span>
+    <span class="post-words">{% capture words %}{{ post.content | number_of_words }}{% endcapture %}{% unless words contains "-" %}{{ words | plus: 250 | divided_by: 250 | append: " minute read" }}{% endunless %}</span>
+  </div>
+</article>
+{% endfor %}
+
+{% include pagination.html %}
