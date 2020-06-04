@@ -5,7 +5,7 @@ date: 2020-05-31 13:41
 summary: Jekyll installation with flexible-jekyll theme
 category: tech
 author: Han, Insung
-img: software.jpg
+img: blog-default.jpg
 tags: [blog, jekyll, ruby, tech]
 ---
 
